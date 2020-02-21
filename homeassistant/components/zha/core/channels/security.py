@@ -1,9 +1,4 @@
-"""
-Security channels module for Zigbee Home Automation.
-
-For more details about this component, please refer to the documentation at
-https://home-assistant.io/integrations/zha/
-"""
+"""Security channels module for Zigbee Home Automation."""
 import logging
 
 from zigpy.exceptions import DeliveryError
@@ -146,9 +141,8 @@ class IASZoneChannel(ZigbeeChannel):
 
     async def async_configure(self):
         """Configure IAS device."""
-        # Xiaomi devices don't need this and it disrupts pairing
-        if self._zha_device.manufacturer == "LUMI":
-            self.debug("finished IASZoneChannel configuration")
+        if self._zha_device.skip_configuration:
+            self.debug("skipping IASZoneChannel configuration")
             return
 
         self.debug("started IASZoneChannel configuration")

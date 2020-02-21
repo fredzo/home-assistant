@@ -3,9 +3,6 @@ Support for Fido.
 
 Get data from 'Usage Summary' page:
 https://www.fido.ca/pages/#/my-account/wireless
-
-For more details about this platform, please refer to the documentation at
-https://home-assistant.io/components/sensor.fido/
 """
 from datetime import timedelta
 import logging
@@ -20,6 +17,7 @@ from homeassistant.const import (
     CONF_NAME,
     CONF_PASSWORD,
     CONF_USERNAME,
+    DATA_KILOBITS,
 )
 import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.entity import Entity
@@ -27,7 +25,6 @@ from homeassistant.util import Throttle
 
 _LOGGER = logging.getLogger(__name__)
 
-KILOBITS = "Kb"
 PRICE = "CAD"
 MESSAGES = "messages"
 MINUTES = "minutes"
@@ -40,9 +37,9 @@ MIN_TIME_BETWEEN_UPDATES = timedelta(minutes=15)
 SENSOR_TYPES = {
     "fido_dollar": ["Fido dollar", PRICE, "mdi:square-inc-cash"],
     "balance": ["Balance", PRICE, "mdi:square-inc-cash"],
-    "data_used": ["Data used", KILOBITS, "mdi:download"],
-    "data_limit": ["Data limit", KILOBITS, "mdi:download"],
-    "data_remaining": ["Data remaining", KILOBITS, "mdi:download"],
+    "data_used": ["Data used", DATA_KILOBITS, "mdi:download"],
+    "data_limit": ["Data limit", DATA_KILOBITS, "mdi:download"],
+    "data_remaining": ["Data remaining", DATA_KILOBITS, "mdi:download"],
     "text_used": ["Text used", MESSAGES, "mdi:message-text"],
     "text_limit": ["Text limit", MESSAGES, "mdi:message-text"],
     "text_remaining": ["Text remaining", MESSAGES, "mdi:message-text"],
